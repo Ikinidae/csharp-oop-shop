@@ -49,7 +49,7 @@ public class Prodotto
     public Prodotto ()
     {
         Random rnd = new Random();
-        codice = rnd.Next(1000000);
+        codice = rnd.Next(99999);
     }
 
 
@@ -118,7 +118,7 @@ public class Prodotto
         string codice = Convert.ToString(this.codice);
         if (codice.Length <= 8)
         {
-            for (int i = 0; i < (9 - codice.Length); i++)
+            for (int i = 0; codice.Length < 8; i++)
             {
                 codice = 0 + codice;
             }
