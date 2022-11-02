@@ -33,6 +33,8 @@ Console.WriteLine(casa.GetPrezzoIva());
 Console.WriteLine (casa.GetNome());
 Console.WriteLine(casa.GetNomeCompleto());
 
+Console.WriteLine("codice con pad left: " + casa.PadLeft());
+
 
 public class Prodotto
 {
@@ -47,7 +49,7 @@ public class Prodotto
     public Prodotto ()
     {
         Random rnd = new Random();
-        codice = rnd.Next(100000000);
+        codice = rnd.Next(1000000);
     }
 
 
@@ -106,5 +108,21 @@ public class Prodotto
     public float GetPrezzoIva()
     {
         return this.prezzo + this.iva;
+    }
+
+    public string PadLeft ()
+    {
+        //se codice.Length < 8 aggiungere zeri a sx con un ciclo for che cicli per un numero di volte inferiore a 8-codice.Length e ad ognuno aggiunga 0,
+        //poi somma gli 0 al codice
+
+        string codice = Convert.ToString(this.codice);
+        if (codice.Length <= 8)
+        {
+            for (int i = 0; i < (9 - codice.Length); i++)
+            {
+                codice = 0 + codice;
+            }
+        }
+        return codice;
     }
 }
