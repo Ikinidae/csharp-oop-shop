@@ -20,18 +20,19 @@ Prodotto casa = new Prodotto ();
 
 //setto il nome
 string nome = Console.ReadLine ();
-casa.SetNome(nome);
+casa.Nome = nome;
 
 //setto prezzo e iva
-casa.SetPrezzo(200.20f);
-casa.SetIva(12.2f);
+casa.Prezzo = 200.20f;
+casa.Iva = 12.2f;
 
 //leggo il prezzo + iva
-Console.WriteLine(casa.GetPrezzoIva());
+Console.WriteLine("prezzo + iva: " + casa.GetPrezzoIva());
 
 //leggo il nome settato
-Console.WriteLine (casa.GetNome());
-Console.WriteLine(casa.GetNomeCompleto());
+Console.WriteLine("codice: " + casa.Codice);
+
+Console.WriteLine("nome completo: " + casa.GetNomeCompleto());
 
 Console.WriteLine("codice con pad left: " + casa.PadLeft());
 
@@ -40,74 +41,35 @@ public class Prodotto
 {
     //attributi della classe
     private int codice;
-    private string nome;
-    private string descrizione;
-    private float prezzo;
-    private float iva;
 
     //costruttore
     public Prodotto ()
     {
         Random rnd = new Random();
-        codice = rnd.Next(99999);
+        Codice = rnd.Next(10000000);
     }
 
+    //properties
+    public int Codice { get; }
 
-    //setter
-    public void SetNome(string nome)
-    {
-        this.nome = nome;
-    }
+    public string Nome { get; set; }
 
-    public void SetDescrizione(string descrizione)
-    {
-        this.descrizione = descrizione;
-    }
+    public string Descrizione { get; set; }
 
-    public void SetPrezzo(float prezzo)
-    {
-        this.prezzo = prezzo;
-    }
+    public float Prezzo { get; set; }
 
-    public void SetIva(float iva)
-    {
-        this.iva = iva;
-    }
+    public float Iva { get; set; }
 
     //getter
-    public int GetCodice()
-    {
-        return this.codice;
-    }
-
-    public string GetNome()
-    {
-        return this.nome;
-    }
 
     public string GetNomeCompleto()
     {
-        return this.codice + this.nome;
-    }
-
-    public string GetDescrizione()
-    {
-        return this.descrizione;
-
-    }
-    public float GetPrezzoBase ()
-    {
-        return this.prezzo;
-    }
-
-    public float GetIva()
-    {
-        return this.iva;
+        return Codice + Nome;
     }
 
     public float GetPrezzoIva()
     {
-        return this.prezzo + this.iva;
+        return Prezzo + Iva;
     }
 
     public string PadLeft ()
@@ -115,7 +77,7 @@ public class Prodotto
         //se codice.Length < 8 aggiungere zeri a sx con un ciclo for che cicli per un numero di volte inferiore a 8-codice.Length e ad ognuno aggiunga 0,
         //poi somma gli 0 al codice
 
-        string codice = Convert.ToString(this.codice);
+        string codice = Convert.ToString(this.Codice);
         if (codice.Length <= 8)
         {
             for (int i = 0; codice.Length < 8; i++)
